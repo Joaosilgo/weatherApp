@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <title>WeatherApp - Weather</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+</head>
+
+<body>
+  <nav class="blue-grey" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo center">WeatherApp</a>
+      <ul class="right hide-on-med-and-down">
+        <!-- <li><a href="#">Navbar Link</a></li>-->
+
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        <li>
+          <div class="user-view">
+            <div class="background">
+              <img src="img/undefined.jpeg">
+            </div>
+            <a href="#user"><img class="circle" src="img/undefined.jpeg"></a>
+            <a href="#name"><span class="white-text name">John Doe</span></a>
+            <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+          </div>
+        </li>
+        <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+        <li><a href="#!">Second Link</a></li>
+        <li>
+          <div class="divider"></div>
+        </li>
+        <li><a class="subheader">Subheader</a></li>
+        <li><a class="waves-effect" href="#!"><i class="material-icons">refresh</i>Refresh</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+
+
+  <div class="card-panel blue-grey lighten-2">
+    <span class="white-text">I am a very simple card. I am good at containing small bits of information.
+      I am convenient because I require little markup to use effectively. I am similar to what is called a panel in
+      other frameworks.
+    </span>
+
+  </div>
+
+
+  <!--
+  <div class="row">
+    <form class="col s12"   >
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">search</i>
+
+          <input id="icon_prefix" type="text">
+          <label for="icon_prefix">City</label>
+        </div>
+      </div>
+      <button type="submit" action="showForecast()" >Add</button>
+    </form>
+    <div class="col s12">
+      <a class="btn-floating btn-small waves-effect waves-light brown" onclick="getGeolocation()"><i
+          class="material-icons">my_location</i></a>
+    </div>
+
+  </div>
+-->
+
+
+
+ 
+
+  <div class="container">
+
+
+    <div class="card small z-depth-5">
+
+
+      <div class="card-content center">
+
+
+        <h1 class="center" id="temp"> --º <i class="material-icons">wb_sunny</i></h1>
+
+        <p  class="grey-text text-darken-1" id="description"></p>
+
+      </div>
+
+    </div>
+
+    <div class="card Medium z-depth-5">
+      <span class="card-title  grey-text center">Details</span>
+
+      <div id="info" class="card-content center">
+
+        <div id="details" class="row ">
+          <div class=" col s6">
+            <p class=" grey-text "><i class="material-icons ">explore</i>Wind Direction </p>
+            <p id="wind-direction" class="grey-text text-darken-1">--</p>
+          </div>
+          <div class=" col s6">
+            <p class=" grey-text "><i class="material-icons ">toys</i> Wind Speed</p>
+            <p id="wind-speed" class="grey-text text-darken-1">--</p>
+          </div>
+          <div class=" col s6">
+            <p class=" grey-text "><i class="material-icons ">brightness_low</i> Sunrise</p>
+            <p id="sunrise" class="grey-text text-darken-1">--</p>
+          </div>
+          <div class=" col s6">
+            <p class=" grey-text "><i class="material-icons ">brightness_3</i> Sunset</p>
+            <p id="sunset" class="grey-text text-darken-1">--</p>
+          </div>
+          <div class=" col s6">
+            <p class=" grey-text "><i class="material-icons ">brightness_high</i> UVI</p>
+            <p id="uvi" class="grey-text text-darken-1">--</p>
+          </div>
+          <div class=" col s6">
+            <p class=" grey-text "><i class="material-icons ">cloud_circle</i> clouds</p>
+            <p id="clouds" class="grey-text text-darken-1">--</p>
+          </div>
+          <div class=" col s6">
+            <p class=" grey-text "><i class="material-icons ">cloud</i> Pressure</p>
+            <p id="pressure" class="grey-text text-darken-1">--</p>
+          </div>
+          <div class=" col s6">
+            <p class=" grey-text "><i class="material-icons ">filter_drama</i> Humidity</p>
+            <p id="humidity" class="grey-text text-darken-1">--</p>
+          </div>
+          <div class=" col s6">
+            <p class=" grey-text "><i class="material-icons ">map</i> Latitude</p>
+            <p id="latitude" class="grey-text text-darken-1">--</p>
+          </div>
+          <div class=" col s6">
+            <p class=" grey-text "><i class="material-icons ">map</i> Longitude</p>
+            <p id="longitude" class="grey-text text-darken-1">--</p>
+          </div>
+          <div class=" col s6">
+            <p class=" grey-text "><i class="material-icons ">blur_on</i> Visibility</p>
+            <p id="visibility" class="grey-text text-darken-1">--</p>
+          </div>
+          <div class=" col s6">
+            <p class=" grey-text "><i class="material-icons ">bubble_chart</i> Ponto Orvalho</p>
+            <p id="dew_point" class="grey-text text-darken-1">--</p>
+          </div>
+
+        </div>
+
+        <p><a href="#">This is a link</a></p>
+
+        <span class="card-title activator grey-text text-darken-4">Card Title<i
+            class="material-icons right">more_vert</i></span>
+      </div>
+      <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+        <p>Here is some more information about this product that is only revealed once clicked on.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+getGeolocation();
+
+
+function timeConverter(UNIX_timestamp){
+  var a = new Date(UNIX_timestamp * 1000);
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var year = a.getFullYear();
+  var month = months[a.getMonth()];
+  var date = a.getDate();
+  var hour = a.getHours();
+  var min = a.getMinutes();
+  var sec = a.getSeconds();
+//  var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+  var time = hour + ':' + min + ':' + sec ;
+  return time;
+}
+console.log(timeConverter(0));
+
+    var x = document.getElementById("info");
+    var lat = document.getElementById("latitude");
+    var long = document.getElementById("longitude");
+    function getGeolocation() {
+      if (navigator.geolocation) {
+
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+        x.innerHTML = "Geolocation is not suported by this browser"
+      }
+    }
+
+    function showPosition(position) {
+      lat.innerText = parseFloat(position.coords.latitude).toFixed(2);
+      long.innerText = parseFloat(position.coords.longitude).toFixed(2);
+      //x.innerHTML="Latitude: " + position.coords.latitude + " <br>Longitude"   + position.coords.longitude ;
+
+
+      
+      var key = "439d4b804bc8187953eb36d2a8c26a02";
+      var cityName = document.getElementById("icon_prefix");
+
+
+
+      //var  link = "https://openweathermap.org/data/2.5/weather?q="+cityName+"&units=metric&appid="+key;
+     // link = 'https://openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=439d4b804bc8187953eb36d2a8c26a02'
+      link = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + position.coords.latitude + '&lon=' + position.coords.longitude + '&units=metric&appid=4274010b08d2b962b01db4d7244558b9'
+      var request = new XMLHttpRequest();
+      request.open('GET', link, true);
+      request.onload = function () {
+        var obj = JSON.parse(this.response);
+        if (request.status >= 200 && request.status < 400) {
+         
+         // var temp = obj.main.temp;
+          console.log(obj);
+          console.log(obj.lat);
+          console.log(obj.lon);
+          
+          
+          console.log(obj.current.temp);
+          $('#temp').html(obj.current.temp + "º");
+          console.log(obj.current.feels_like);
+          
+         
+          console.log(obj.current.pressure);
+          $('#pressure').html(obj.current.pressure + "hPa");
+          console.log(obj.current.humidity);
+          $('#humidity').html(obj.current.humidity + "%");
+          console.log(obj.current.visibility);
+          $('#visibility').html(obj.current.visibility + "m" );
+          console.log(obj.current.wind_speed);
+          $('#wind-speed').html(obj.current.wind_speed + "m/s");
+          console.log(obj.current.wind_deg);
+          $('#wind-direction').html(obj.current.wind_deg + "º");
+
+          console.log(obj.current.sunrise);
+          console.log(obj.current.sunset);
+          $('#sunrise').html(timeConverter(obj.current.sunrise));
+          $('#sunset').html(timeConverter(obj.current.sunset));
+
+          console.log(obj.current.uvi);
+          console.log(obj.current.clouds);
+          $('#uvi').html(obj.current.uvi + " UV ");
+          $('#clouds').html(obj.current.clouds + "%");
+           
+          console.log(obj.current.dew_point);
+          $('#dew_point').html(obj.current.dew_point + " º ");
+
+
+
+
+          //var fruits = ["apple", "orange", "cherry"];
+          obj.current.weather.forEach(myFunction);
+
+function myFunction(item, index) {
+  //document.getElementById("description").innerHTML += index + ":" + item + "<br>";
+  document.getElementById("description").innerHTML +=   item.description + "<br>";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          //$('#temp-min').html(obj.main.temp_min + "º");
+          //console.log(obj.main.temp_max);
+          //$('#temp-max').html(obj.main.temp_max + "º");
+
+        }
+        else {
+          console.log("The city doesn't exist! Kindly check");
+        }
+      }
+      request.send();
+    
+    }
+
+
+    /* 
+    
+    
+        var request = new XMLHttpRequest()
+     
+        // Open a new connection, using the GET request on the URL endpoint
+        request.open('GET', 'https://openweathermap.org/data/2.5/weather?q=Lisboa,pt&appid=439d4b804bc8187953eb36d2a8c26a02' , true)
+     
+        request.onload = function () {
+          // Begin accessing JSON data here
+          var data = JSON.parse(this.response);
+     
+          var statusHTML = '';
+            
+            
+          $.each(data, function (i, status) {
+          statusHTML +=  '<h6>' + status+ '</h6>';
+           $('#temp').html(statusHTML);
+          });
+        }
+     
+        // Send request
+        request.send();
+    
+    */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //showForecast("Comporta");
+
+
+
+    
+
+
+
+   
+  </script>
+
+
+
+<!--   Icon Section   -->
+
+<!--
+
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Starter Template</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+      </div>
+      <div class="row center">
+        <a href="http://materializecss.com/getting-started.html" id="download-button"
+          class="btn-large waves-effect waves-light orange">Get Started</a>
+      </div>
+      <br><br>
+
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+
+      
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
+            <h5 class="center">Speeds up development</h5>
+
+            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our
+              custom components. Additionally, we refined animations and transitions to provide a smoother experience
+              for developers.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">User Experience Focused</h5>
+
+            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework
+              that incorporates components and animations that provide more feedback to users. Additionally, a single
+              underlying responsive system across all platforms allow for a more unified user experience.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
+            <h5 class="center">Easy to work with</h5>
+
+            <p class="light">We have provided detailed documentation as well as specific code examples to help new users
+              get started. We are also always open to feedback and can answer any questions a user may have about
+              Materialize.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <br><br>
+  </div>
+
+  -->
+
+  <footer class="page-footer blue-grey">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Company Bio</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our
+            full time job. Any amount would help support and continue development on this project and is greatly
+            appreciated.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Settings</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Made by <a class="grey-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+</body>
+
+</html>
